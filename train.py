@@ -13,7 +13,6 @@ def train_model(
     criterion: nn.Module,
     optimizer: Optimizer,
     device: str,
-    path_to_save_model: str,
     num_epochs: int = 13,
     is_train: bool = True,
 ) -> Tuple[List[float], List[float]]:
@@ -56,7 +55,7 @@ def train_model(
         loss_history.append(epoch_loss)
         torch.save(
             model.state_dict(),
-            os.path.join(path_to_save_model, "{0:0=2d}.pth".format(epoch)),
+            os.path.join("./080289/chap05/results/", "{0:0=2d}.pth".format(epoch)),
         )
         print()
 
