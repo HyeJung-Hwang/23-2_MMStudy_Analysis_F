@@ -2,7 +2,7 @@ import os
 import cv2
 from matplotlib import pyplot as plt
 
-def display_image_grid(images_filepaths, predicted_labels=(), cols=5):
+def display_test_image_and_label(images_filepaths, predicted_labels=(), cols=5):
     rows = len(images_filepaths) // cols
     figure, ax = plt.subplots(nrows=rows, ncols=cols, figsize=(12, 6))
     for i, image_filepath in enumerate(images_filepaths):
