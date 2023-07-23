@@ -1,6 +1,6 @@
 from PIL import Image
+from tqdm import tqdm_notebook as tqdm
 import torch
-import tqdm
 import pandas as pd
 import torch.nn as nn
 from preprocess.image_transform import ImageTransform
