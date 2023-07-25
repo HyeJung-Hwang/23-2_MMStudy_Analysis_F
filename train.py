@@ -6,7 +6,7 @@ from torch import nn
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
 
-from test import calculate_accuracy
+from test import calculate_accuracy, calculate_topk_accuracy
 
 def train_model(
     model: nn.Module, 
@@ -86,3 +86,31 @@ def train_vgg(model, iterator, optimizer, criterion, device):
         epoch_loss += loss.item()
         epoch_acc += acc.item()
     return epoch_loss / len(iterator), epoch_acc / len(iterator)
+
+def train_resnet(model, iterator, optimizer, criterion, device):
+    epoch_loss = 0
+    epoch_acc_1 = 0
+    epoch_acc_5 = 0
+
+    model.train()
+    for x, y in iterator:
+        x = x.to(device)
+        y = y.to(device)
+
+        optimizer.zero_grad()
+        y_pred = model(x)
+
+        loss = criterion(y_pred[0], y)
+
+        acc_1, acc_5 = calculate_topk_accuracy(y_pred[0], y)
+        loss.backward()
+        optimizer.step()
+
+        epoch_loss += loss.item()
+        epoch_acc_1 += acc_1.item()
+        epoch_acc_5 += acc_5.item()
+
+    epoch_loss /= len(iterator)
+    epoch_acc_1 /= len(iterator)
+    epoch_acc_5 /= len(iterator)
+    return epoch_loss, epoch_acc_1, epoch_acc_5
