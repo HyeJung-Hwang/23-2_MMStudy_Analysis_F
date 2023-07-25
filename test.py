@@ -28,3 +28,9 @@ def make_test_result_dataframe(test_images_filepaths: list,size: int,mean: tuple
 
     res = pd.DataFrame({"id": id_list, "label": pred_list})
     return res
+
+def calculate_accuracy(y_pred: torch.Tensor, y:torch.Tensor) -> torch.Tensor:
+    top_pred = y_pred.argmax(1, keepdim=True)
+    correct = top_pred.eq(y.view_as(top_pred)).sum()
+    acc = correct.float() / y.shape[0]
+    return acc
