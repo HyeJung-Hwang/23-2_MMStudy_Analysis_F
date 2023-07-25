@@ -47,7 +47,7 @@ def calculate_topk_accuracy(y_pred, y, k=2):
         acc_k = correct_k / batch_size
     return acc_1, acc_k
 
-def evaluate(model, iterator, criterion, device):
+def evaluate_vgg(model, iterator, criterion, device):
     epoch_loss = 0
     epoch_acc = 0
 
