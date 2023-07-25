@@ -1,7 +1,8 @@
+
 import torch.nn as nn
 import torch
 
-class VGG11Layer():
+class VGGLayer():
     def __init__(self):
         self.vgg11_config = [64, "M", 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"]
         self.vgg13_config = [64, 64, "M", 128, 128, "M", 256, 256, "M", 512, 512, "M", 512, 512, "M"]
