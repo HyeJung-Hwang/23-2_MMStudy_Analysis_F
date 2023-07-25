@@ -67,7 +67,7 @@ def train_model(
     print("Best val Acc: {:4f}".format(best_acc))
     return model
 
-def train(model, iterator, optimizer, criterion, device):
+def train_vgg(model, iterator, optimizer, criterion, device):
     epoch_loss = 0
     epoch_acc = 0
 
