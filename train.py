@@ -6,6 +6,8 @@ from torch import nn
 from torch.optim import Optimizer
 from torch.utils.data import DataLoader
 
+from test import calculate_accuracy
+
 def train_model(
     model: nn.Module, 
     dataloader_dict: Dict[str, DataLoader],
@@ -64,3 +66,23 @@ def train_model(
     )
     print("Best val Acc: {:4f}".format(best_acc))
     return model
+
+def train(model, iterator, optimizer, criterion, device):
+    epoch_loss = 0
+    epoch_acc = 0
+
+    model.train()
+    for x, y in iterator:
+        x = x.to(device)
+        y = y.to(device)
+
+        optimizer.zero_grad()
+        y_pred, _ = model(x)
+        loss = criterion(y_pred, y)
+        acc = calculate_accuracy(y_pred, y)
+        loss.backward()
+        optimizer.step()
+
+        epoch_loss += loss.item()
+        epoch_acc += acc.item()
+    return epoch_loss / len(iterator), epoch_acc / len(iterator)
