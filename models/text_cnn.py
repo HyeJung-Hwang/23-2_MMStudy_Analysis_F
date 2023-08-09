@@ -7,7 +7,7 @@ class TextCNN(nn.Module):
             self,
             num_filters: int,filter_sizes: list, vocab_size: int,
             embedding_size: int,sequence_length: int,num_classes: int,
-            is_batch_normalize: bool = False,
+            is_batch_normalize: bool = False, dropout_prob: float = None
         ):
         super(TextCNN, self).__init__()
         self.filter_sizes = filter_sizes
@@ -18,6 +18,7 @@ class TextCNN(nn.Module):
         self.Bias = nn.Parameter(torch.ones([num_classes]))
         self.filter_list = nn.ModuleList([nn.Conv2d(1, num_filters, (size, embedding_size)) for size in filter_sizes])
         self.batch_norm_list = nn.ModuleList([nn.BatchNorm2d(num_filters) for _ in filter_sizes]) if is_batch_normalize else None
+        self.dropout = nn.Dropout(dropout_prob) if dropout_prob else None
 
     def forward(self, X):
         embedded_chars = self.W(X) 
@@ -33,6 +34,8 @@ class TextCNN(nn.Module):
             
             mp = nn.MaxPool2d((self.sequence_length - self.filter_sizes[i] + 1, 1))
             pooled = mp(h).permute(0, 3, 2, 1)
+            if self.dropout is not None:
+                pooled = self.dropout(pooled)
             pooled_outputs.append(pooled)
 
         h_pool = torch.cat(pooled_outputs, len(self.filter_sizes)) 
