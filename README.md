@@ -4,13 +4,13 @@ BOAZ 23-2 멘멘 분석 F조 😄
 
 </br>
 
-# NLP Preprocesing & Train Optimization Tutoral for BOAZ
+# NLP Preprocesing & Train Optimization Tutorial for BOAZ
 2023.08.10
 
 ## Contents
 - BOAZ 분석 트랙 멘멘 스터디를 위해 준비한 레포지토리입니다.
 
-## Projects Structure
+## Project Structure
 ```
 23-2_MMStudy_Analysis_F/
 │
@@ -20,6 +20,7 @@ BOAZ 23-2 멘멘 분석 F조 😄
 ├── train.py
 ├── test.py
 ├── ch8_practice.ipynb
+├── ch9_practice.ipynb
 ├── Pipfile
 ├── Pipfile.lock
 │
