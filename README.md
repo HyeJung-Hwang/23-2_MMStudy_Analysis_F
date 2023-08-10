@@ -4,7 +4,7 @@ BOAZ 23-2 멘멘 분석 F조 😄
 
 </br>
 
-# NLP Preprocesing & Train Optimization Tutoral for BOAZ
+# NLP Preprocesing & Train Optimization Tutorial for BOAZ
 2023.08.10
 
 ## Contents
@@ -20,6 +20,7 @@ BOAZ 23-2 멘멘 분석 F조 😄
 ├── train.py
 ├── test.py
 ├── ch8_practice.ipynb
+├── ch9_practice.ipynb
 ├── Pipfile
 ├── Pipfile.lock
 │
