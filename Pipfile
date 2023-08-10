@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+jupyter = "*"
+numpy = "*"
+pandas = "*"
+matplotlib = "*"
+seaborn = "*"
+scikit-learn = "*"
+torch = "*"
+torchvision = "*"
+torchaudio = "*"
+mxnet = "*"
+torchsummary = "*"
+opencv-python = "*"
+tqdm = "*"
+black = {version = "*", extras = ["jupyter"]}
+torchtext = "==0.6.0"
+nltk = "*"
+konlpy = "*"
+
+[dev-packages]
+black = "*"
+
+[requires]
+python_version = "3.11"
+
+[pipenv]
+allow_prereleases = true
